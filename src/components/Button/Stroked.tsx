@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { ButtonProps } from './types.ts';
 import { colorRed, colorWhite } from '../../shared/styles/colors.ts';
 
-export const StrokedButtonStyled = styled.button<{$color?: string; }>`
+export const StrokedButtonStyled = styled.button`
   padding: 10px 20px;
   background-color: ${colorRed};
   border: none;
@@ -19,6 +19,6 @@ export const StrokedButtonStyled = styled.button<{$color?: string; }>`
 `;
 export const StrokedButton: React.FC<ButtonProps> = ({children, onClick}) => {
   return (
-    <StrokedButtonStyled onClick={() => onClick}>{children}</StrokedButtonStyled>
+    <StrokedButtonStyled onClick={onClick}>{children}</StrokedButtonStyled>
   );
 };

@@ -27,11 +27,6 @@ const App: React.FC = () => {
     console.log(query);
   }
 
-  const handleGenreSelect = (genre: string) => {
-    setSelectedGenre(genre);
-    console.log(genre);
-  };
-
   return (
     <ContainerStyled>
       <BannerStyled>
@@ -43,13 +38,13 @@ const App: React.FC = () => {
           <button>+ Add Movie</button>
         </HeaderRowStyled>
         <TitleStyled>FIND YOUR MOVIE</TitleStyled>
-        <SearchBar initialQuery={''} onSearch={onSearch} />
+        <SearchBar initialQuery='' onSearch={onSearch} />
       </BannerStyled>
 
       <GenreSelect
         genres={GENRES}
         selectedGenre={selectedGenre}
-        onSelect={handleGenreSelect}
+        onSelect={setSelectedGenre}
       />
 
       {movies.length ? movies.map((movie) => {

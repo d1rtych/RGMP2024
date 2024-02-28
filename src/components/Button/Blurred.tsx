@@ -19,6 +19,6 @@ export const BlurredButtonStyled = styled.button`
 
 export const BlurredButton: React.FC<ButtonProps> = ({children, onClick}) => {
   return (
-    <BlurredButtonStyled onClick={() => onClick}>{children}</BlurredButtonStyled>
+    <BlurredButtonStyled onClick={onClick}>{children}</BlurredButtonStyled>
   );
 };

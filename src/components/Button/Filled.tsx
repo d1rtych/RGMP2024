@@ -13,16 +13,6 @@ export const FilledButtonStyled = styled.button`
   cursor: pointer;
   font-size: 16px;
 
-  /* Search Button */
-
-  //position: absolute;
-  //width: 233px;
-  //height: 57px;
-  //left: 905px;
-  //top: 242px;
-
-
-
   &:hover {
     background-color: ${darken(0.1, colorRed)}; // Затемнение на 10%
   }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { SearchInput, StyledSearchForm } from './styled.tsx';
 import { FilledButton } from '../Button';
 import { SearchFormProps } from './types.ts';
@@ -6,9 +6,9 @@ import { SearchFormProps } from './types.ts';
 const SearchBar: React.FC<SearchFormProps> = ({ initialQuery, onSearch }) => {
   const [query, setQuery] = useState(initialQuery);
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     onSearch(query);
-  };
+  }, [onSearch, query]);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
