@@ -7,6 +7,7 @@ const GenreSelect: React.FC<GenreSelectProps> = ({ genres, selectedGenre, onSele
     <GenreSelectStyled>
       {genres.map((genre) => (
         <GenreOptionStyled
+          data-cy="genre-option"
           key={genre}
           className={selectedGenre === genre ? 'selected' : ''}
           onClick={() => onSelect(genre)}
