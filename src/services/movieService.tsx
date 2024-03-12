@@ -1,3 +1,4 @@
+// src/services/movieService.ts
 import axios from 'axios';
 import { Movie } from '../interfaces/movie.interface.ts';
 
@@ -7,10 +8,8 @@ const apiClient = axios.create({
 
 const movieService = {
   getMovies: async (): Promise<Movie[]> => {
-    const response = await apiClient.get<{
-      data: Movie[]
-    }>('/movies');
-    return response.data.data;
+    const response = await apiClient.get('/movies');
+    return response.data;
   },
 
   getMovieById: async (id: string): Promise<Movie> => {

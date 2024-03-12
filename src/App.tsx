@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
+import GenreSelect from './components/GenreSelect';
+import SearchBar from './components/SearchBar';
 import movieService from './services/movieService.tsx';
 import { Movie } from './interfaces/movie.interface.ts';
 
 import { TypographyBold } from './shared/styles/styled.tsx';
 import { BannerStyled, ContainerStyled, HeaderRowStyled, LogoStyled, TitleStyled } from './App.styled.tsx';
 import { GENRES } from './shared/constants.ts';
-import GenreSelect from './components/GenreSelect/GenreSelect.tsx';
-import SearchBar from './components/SearchBar/SearchBar.tsx';
 
 const App: React.FC = () => {
-  const [selectedGenre, setSelectedGenre] = useState('Comedy');
+  const [selectedGenre, setSelectedGenre] = useState('All');
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const App: React.FC = () => {
       />
 
       {movies.length ? movies.map((movie) => {
-        return (<div key={movie.id}>{movie.title}</div>)
+        return (<div>{movie.title}</div>)
       }) : (<div>No data</div>)}
     </ContainerStyled>
   );
