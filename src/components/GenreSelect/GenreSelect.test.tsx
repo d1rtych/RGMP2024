@@ -1,7 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import { GENRES } from '../../shared/constants.ts';
-import GenreSelect from './GenreSelect.tsx';
+import { GENRES } from '../../shared/constants';
+import GenreSelect from './GenreSelect';
 
 const genres = GENRES;
 const selectedGenre = 'Comedy';
@@ -9,7 +10,7 @@ const onChange = jest.fn();
 
 describe('GenreSelect Component', () => {
   test('renders all genres passed in props', () => {
-    render(<GenreSelect genres={genres} selectedGenre={'All'} onSelect={onChange} />);
+    render(<GenreSelect genres={genres} selectedGenre='All' onSelect={onChange} />);
     genres.forEach(genre => {
       expect(screen.getByText(genre)).toBeInTheDocument();
     });
@@ -18,15 +19,13 @@ describe('GenreSelect Component', () => {
   test('highlights a selected genre passed in props', () => {
     render(<GenreSelect genres={genres} selectedGenre={selectedGenre} onSelect={onChange} />);
     const selectedButton = screen.getByText(selectedGenre);
-    console.log(selectedGenre);
-    console.log(selectedButton);
     expect(selectedButton).toHaveClass('selected');
   });
 
-  test('calls "onChange" callback with correct genre on genre button click', () => {
-    render(<GenreSelect genres={genres} selectedGenre={'All'} onSelect={onChange} />);
+  test('calls "onChange" callback with correct genre on genre button click', async () => {
+    render(<GenreSelect genres={genres} selectedGenre='All' onSelect={onChange} />);
     const genreToClick = screen.getByText('Comedy');
-    fireEvent.click(genreToClick);
+    await userEvent.click(genreToClick);
     expect(onChange).toHaveBeenCalledWith('Comedy');
   });
 });

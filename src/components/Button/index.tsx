@@ -1,5 +1,5 @@
-import { BlurredButton } from './Blurred.tsx';
-import { FilledButton } from './Filled.tsx';
-import { StrokedButton } from './Stroked.tsx';
+import { BlurredButton } from './Blurred';
+import { FilledButton } from './Filled';
+import { StrokedButton } from './Stroked';
 
 export { BlurredButton, FilledButton, StrokedButton };

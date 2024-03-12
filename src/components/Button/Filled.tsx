@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { darken } from 'polished';
-import { ButtonProps } from './types.ts';
-import { colorRed, colorWhite } from '../../shared/styles/colors.ts';
+
+import { ButtonProps } from './types';
+import { colorRed, colorWhite } from '../../shared/styles/colors';
 
 export const FilledButtonStyled = styled.button`
   padding: 10px 20px;

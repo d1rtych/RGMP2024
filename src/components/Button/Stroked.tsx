@@ -1,8 +1,8 @@
 import React from 'react';
-
 import styled from 'styled-components';
-import { ButtonProps } from './types.ts';
-import { colorRed, colorWhite } from '../../shared/styles/colors.ts';
+
+import { ButtonProps } from './types';
+import { colorRed, colorWhite } from '../../shared/styles/colors';
 
 export const StrokedButtonStyled = styled.button`
   padding: 10px 20px;

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { colorBlackish, colorRed, colorWhite } from '../../shared/styles/colors.ts';
-import { horizontalPadding } from '../../shared/styles/constants.ts';
+
+import { colorBlackish, colorRed, colorWhite } from '../../shared/styles/colors';
+import { horizontalPadding } from '../../shared/styles/constants';
 
 export const GenreSelectStyled = styled.div`
   margin-top: 10px;

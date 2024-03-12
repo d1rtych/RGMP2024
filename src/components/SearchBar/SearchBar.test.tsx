@@ -1,6 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import SearchBar from './SearchBar.tsx';
+import SearchBar from './SearchBar';
 
 describe('SearchBar', () => {
   const initialQuery = "initial query";
@@ -16,24 +17,24 @@ describe('SearchBar', () => {
     expect(inputElement).toBeInTheDocument();
   });
 
-  test('calls "onSearch" prop with proper value after typing and clicking the SEARCH button', () => {
+  test('calls "onSearch" prop with proper value after typing and clicking the SEARCH button', async () => {
     render(<SearchBar initialQuery={""} onSearch={onSearch} />);
     const inputElement = screen.getByRole('textbox');
     const newValue = "new search query";
-    fireEvent.change(inputElement, { target: { value: newValue } });
+    await userEvent.type(inputElement, newValue);
 
     const searchButton = screen.getByRole('button', { name: /search/i });
-    fireEvent.click(searchButton);
+    await userEvent.click(searchButton);
 
     expect(onSearch).toHaveBeenCalledWith(newValue);
   });
 
-  test('calls "onSearch" prop with proper value after typing and pressing Enter key', () => {
+  test('calls "onSearch" prop with proper value after typing and pressing Enter key', async () => {
     render(<SearchBar initialQuery={""} onSearch={onSearch} />);
     const inputElement = screen.getByRole('textbox');
     const newValue = "new search query";
-    fireEvent.change(inputElement, { target: { value: newValue } });
-    fireEvent.keyDown(inputElement, { key: 'Enter', code: 'Enter' });
+    await userEvent.type(inputElement, newValue);
+    await userEvent.type(inputElement, '{enter}');
 
     expect(onSearch).toHaveBeenCalledWith(newValue);
   });

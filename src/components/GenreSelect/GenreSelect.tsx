@@ -1,6 +1,7 @@
 import React from 'react';
-import { GenreOptionStyled, GenreSelectStyled } from './styled.tsx';
-import { GenreSelectProps } from './types.ts';
+
+import { GenreOptionStyled, GenreSelectStyled } from './styled';
+import { GenreSelectProps } from './types';
 
 const GenreSelect: React.FC<GenreSelectProps> = ({ genres, selectedGenre, onSelect }) => {
   return (
