@@ -1,24 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+import Counter from './pages/Counter.tsx';
 import App from './App.tsx'
 import 'normalize.css'
 import './index.css'
 
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />,
+  },
+  {
+    path: '/counter',
+    element: <Counter />,
+  },
+]);
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )
-
-// COUNTER with an old and disgusting approach
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-// import CounterApp from './components/Counter.tsx'; // Import the App component
-//
-// const rootElement = document.getElementById('root');
-// // @ts-ignore
-// const root = ReactDOM.createRoot(rootElement);
-//
-// root.render(
-//   React.createElement(CounterApp, null, null)
-// );
