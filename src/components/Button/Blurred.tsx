@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import React from 'react';
-import { ButtonProps } from './types.ts';
-import { colorRed, colorWhite } from '../../shared/styles/colors.ts';
+
+import { ButtonProps } from './types';
+import { colorRed, colorWhite } from '../../shared/styles/colors';
 
 export const BlurredButtonStyled = styled.button`
   padding: 10px 20px;

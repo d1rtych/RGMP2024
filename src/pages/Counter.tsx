@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { CounterStyled } from './styled.tsx';
+
+import { CounterStyled } from './styled';
 
 const Counter: React.FC = () => {
   const [count, setCount] = useState<number>(0);

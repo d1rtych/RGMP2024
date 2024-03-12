@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { Movie } from '../interfaces/movie.interface.ts';
+
+import { Movie } from '../interfaces/movie.interface';
 
 const apiClient = axios.create({
   baseURL: 'http://localhost:4000', // Базовый URL вашего API

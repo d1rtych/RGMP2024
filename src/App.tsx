@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import movieService from './services/movieService.tsx';
-import { Movie } from './interfaces/movie.interface.ts';
+import movieService from './services/movieService';
+import { Movie } from './interfaces/movie.interface';
 
-import { TypographyBold } from './shared/styles/styled.tsx';
-import { BannerStyled, ContainerStyled, HeaderRowStyled, LogoStyled, TitleStyled } from './App.styled.tsx';
-import { GENRES } from './shared/constants.ts';
-import GenreSelect from './components/GenreSelect/GenreSelect.tsx';
-import SearchBar from './components/SearchBar/SearchBar.tsx';
+import { TypographyBold } from './shared/styles/styled';
+import { BannerStyled, ContainerStyled, HeaderRowStyled, LogoStyled, TitleStyled } from './App.styled';
+import { GENRES } from './shared/constants';
+import GenreSelect from './components/GenreSelect/GenreSelect';
+import SearchBar from './components/SearchBar/SearchBar';
 
 const App: React.FC = () => {
   const [selectedGenre, setSelectedGenre] = useState('Comedy');
