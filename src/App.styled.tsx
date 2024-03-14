@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { horizontalPadding, verticalPadding } from './shared/styles/constants.ts';
-import { colorRed, colorWhite } from './shared/styles/colors.ts';
+import { horizontalPadding, verticalPadding } from './shared/styles/constants';
+import { colorBlackish, colorRed, colorWhite } from './shared/styles/colors';
 
 import backgroundImg from './assets/images/movies-bg.jpg';
 
@@ -33,4 +33,27 @@ export const TitleStyled = styled.h1`
   color: ${colorWhite};
   text-transform: uppercase;
   font-weight: 300;
+`;
+
+export const ContentStyled = styled.div`
+  margin-top: 10px;
+  padding: 10px ${horizontalPadding};
+  background-color: ${colorBlackish};
+`;
+
+export const MoviesFilter = styled.div`
+  margin-bottom: ${verticalPadding};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const MoviesGrid = styled.div`
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  
+  row-gap: 32px;
 `;
