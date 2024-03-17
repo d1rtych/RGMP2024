@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import { MovieContext } from '../../shared/contexts/MovieContext';
-import { formatRuntime } from '../../utils/utils';
+
 import MovieDetails from './MovieDetails';
+import { formatRuntime } from '../../utils/utils';
 import { mockMovie } from '../../utils/mocks/movie.mock';
+import { createWrapper } from '../../utils/createWrapper.context';
 
 jest.mock('../../utils/utils', () => ({
   formatRuntime: jest.fn().mockReturnValueOnce('2h 22min'),
@@ -11,9 +12,7 @@ jest.mock('../../utils/utils', () => ({
 describe('MovieDetails', () => {
   test('renders movie details when movie is selected', () => {
     render(
-      <MovieContext.Provider value={{ selectedMovie: mockMovie, setSelectedMovie: () => {} }}>
-        <MovieDetails />
-      </MovieContext.Provider>
+      createWrapper(<MovieDetails />)
     );
 
     const title = screen.getByText(mockMovie.title);

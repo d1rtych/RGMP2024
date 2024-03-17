@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 
 import movieService from './services/movieService';
 import { Movie } from './interfaces/movie.interface';
@@ -42,10 +42,9 @@ const App: React.FC = () => {
     console.log(query);
   }
 
-  const handleSortChange = (newSort: string) => {
+  const handleSortChange = useCallback((newSort: string) => {
     setSelectedSort(newSort);
-    console.log(`Sorting movies by: ${newSort}`);
-  };
+  }, [setSelectedSort]);
 
   return (
     <ContainerStyled>
