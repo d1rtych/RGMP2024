@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 
-import { colorBlackish, colorRed, colorWhite } from '../../shared/styles/colors';
-import { horizontalPadding } from '../../shared/styles/constants';
+import { colorRed, colorWhite } from '../../shared/styles/colors';
 
 export const GenreSelectStyled = styled.div`
-  margin-top: 10px;
-  padding: 10px ${horizontalPadding};
   display: flex;
   align-items: center;
-  background-color: ${colorBlackish};
   color: ${colorWhite};
 `;
 
