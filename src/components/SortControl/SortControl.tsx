@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 
 import { SortControlProps } from './types';
 import { SortControlStyled } from './styled';
 import { SORTING_OPTIONS } from '../../shared/constants';
 
-const SortControl: React.FC<SortControlProps> = ({ currentSelection, onSortChange }) => {
+const SortControl: React.FC<SortControlProps> = memo(({ currentSelection, onSortChange }) => {
   const [selectedValue, setSelectedValue] = useState(currentSelection);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -23,6 +23,6 @@ const SortControl: React.FC<SortControlProps> = ({ currentSelection, onSortChang
       </select>
     </SortControlStyled>
   );
-};
+});
 
 export default SortControl;

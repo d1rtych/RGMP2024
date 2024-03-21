@@ -1,4 +1,15 @@
-export const GENRES = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];
+export const GENRES = [
+  'All',
+  'Action',
+  'Adventure',
+  'Animation',
+  'Comedy',
+  'Drama',
+  'Family',
+  'Fantasy',
+  'Romance',
+  'Science Fiction',
+];
 export const SORTING_OPTIONS = [
   {
     title: 'Release Date',
@@ -9,5 +20,4 @@ export const SORTING_OPTIONS = [
     value: 'title'
   },
 ];
-
 export const INITIAL_SORTING_OPTIONS = SORTING_OPTIONS[0].value;

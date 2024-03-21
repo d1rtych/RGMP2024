@@ -4,21 +4,21 @@ import styled from 'styled-components';
 import { ButtonProps } from './types';
 import { colorRed, colorWhite } from '../../shared/styles/colors';
 
-export const StrokedButtonStyled = styled.button`
+const StrokedButtonStyled = styled.button`
   padding: 10px 20px;
-  background-color: ${colorRed};
-  border: none;
+  background-color: transparent;
   border-radius: 4px;
   color: ${colorWhite};
   cursor: pointer;
   font-size: 16px;
+  border: 1px solid ${colorRed};
 
   &:hover {
-    background-color: #e60000;
+    border-color: #e60000;
   }
 `;
-export const StrokedButton: React.FC<ButtonProps> = ({children, onClick}) => {
+export const StrokedButton: React.FC<ButtonProps> = ({children, onClick, type = 'button'}) => {
   return (
-    <StrokedButtonStyled onClick={onClick}>{children}</StrokedButtonStyled>
+    <StrokedButtonStyled type={type} onClick={onClick}>{children}</StrokedButtonStyled>
   );
 };
