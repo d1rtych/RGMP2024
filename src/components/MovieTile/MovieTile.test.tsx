@@ -6,6 +6,18 @@ import { mockMovie } from '../../utils/mocks/movie.mock';
 import { MovieContext } from '../../shared/contexts/MovieContext';
 
 describe('MovieTile', () => {
+  let modalRoot: HTMLElement;
+
+  beforeEach(() => {
+    modalRoot = document.createElement('div');
+    modalRoot.setAttribute('id', 'modal-root');
+    document.body.appendChild(modalRoot);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(modalRoot);
+  });
+
   test('renders movie tile with basic information', () => {
     render(<MovieTile movie={mockMovie} />);
 
@@ -49,5 +61,45 @@ describe('MovieTile', () => {
     await userEvent.click(menuButton);
 
     expect(screen.queryByText('Edit')).not.toBeInTheDocument();
+  });
+
+  test('shows edit modal on "Edit" menu item selection', async () => {
+    render(<MovieTile movie={mockMovie} />);
+
+    const menuButton = screen.getByText('...');
+    await userEvent.click(menuButton);
+
+    const editButton = screen.getByText('Edit');
+    await userEvent.click(editButton);
+
+    expect(screen.getByText('Edit Movie')).toBeInTheDocument();
+  });
+
+  test('shows delete confirmation modal on "Delete" menu item selection', async () => {
+    render(<MovieTile movie={mockMovie} />);
+
+    const menuButton = screen.getByText('...');
+    await userEvent.click(menuButton);
+
+    const deleteButton = screen.getByText('Delete');
+    await userEvent.click(deleteButton);
+
+    expect(screen.getByText('Are you sure you want to delete this movie?')).toBeInTheDocument();
+  });
+
+  test('closes modals properly', async () => {
+    render(<MovieTile movie={mockMovie} />);
+
+    const menuButton = screen.getByText('...');
+    await userEvent.click(menuButton);
+    const editButton = screen.getByText('Edit');
+    await userEvent.click(editButton);
+
+    expect(screen.getByText('Edit Movie')).toBeInTheDocument();
+
+    const closeButton = screen.getByText('X');
+    await userEvent.click(closeButton);
+
+    expect(screen.queryByText('Edit Movie')).not.toBeInTheDocument();
   });
 });

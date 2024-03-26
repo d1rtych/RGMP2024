@@ -45,7 +45,7 @@ export const MoviesFilter = styled.div`
   margin-bottom: ${verticalPadding};
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 `;
 
 export const MoviesGrid = styled.div`

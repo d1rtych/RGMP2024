@@ -10,7 +10,7 @@ export const GenreSelectStyled = styled.div`
 
 export const GenreOptionStyled = styled.button`
   padding: 10px 0;
-  margin-right: 20px;
+  margin-right: 10px;
   background: none;
   border: none;
   color: ${colorWhite};

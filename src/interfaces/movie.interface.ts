@@ -12,3 +12,5 @@ export interface Movie {
   "genres": string[],
   "id": number
 }
+
+export type MovieFormData = Pick<Movie, 'title' | 'release_date' | 'poster_path' | 'vote_average' | 'genres' | 'runtime' | 'overview'>;

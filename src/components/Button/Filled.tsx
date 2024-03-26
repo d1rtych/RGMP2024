@@ -5,7 +5,7 @@ import { darken } from 'polished';
 import { ButtonProps } from './types';
 import { colorRed, colorWhite } from '../../shared/styles/colors';
 
-export const FilledButtonStyled = styled.button`
+const FilledButtonStyled = styled.button`
   padding: 10px 20px;
   background-color: ${colorRed};
   border: none;
@@ -19,8 +19,8 @@ export const FilledButtonStyled = styled.button`
   }
 `;
 
-export const FilledButton: React.FC<ButtonProps> = ({children, onClick}) => {
+export const FilledButton: React.FC<ButtonProps> = ({children, onClick, type = 'button'}) => {
   return (
-    <FilledButtonStyled onClick={onClick}>{children}</FilledButtonStyled>
+    <FilledButtonStyled type={type} onClick={onClick}>{children}</FilledButtonStyled>
   );
 };
