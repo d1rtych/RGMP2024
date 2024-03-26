@@ -17,6 +17,6 @@ describe('Confirmation', () => {
     render(<Confirmation onConfirm={mockOnConfirm} />);
 
     await userEvent.click(screen.getByRole('button', { name: 'Confirm' }));
-    expect(mockOnConfirm).toHaveBeenCalled();
+    expect(mockOnConfirm).toHaveBeenCalledTimes(1);
   });
 });
