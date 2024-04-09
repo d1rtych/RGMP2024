@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import MovieDetails from '../MovieDetails/MovieDetails';
 import SearchBar from '../SearchBar/SearchBar';
@@ -11,10 +12,12 @@ import { MovieFormData } from '../../interfaces/movie.interface';
 
 const AppHeader: React.FC = () => {
   const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
+  const [searchParams, setSearchParams] = useSearchParams();
   const { selectedMovie } = useContext(MovieContext);
 
   const onSearch = (query: string) => {
-    console.log(query);
+    searchParams.set('search', query);
+    setSearchParams(searchParams, { replace: true });
   }
 
   const addMovieHandler = () => {
