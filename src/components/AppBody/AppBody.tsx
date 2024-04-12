@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import GenreSelect from '../GenreSelect/GenreSelect';
 import MovieTile from '../MovieTile/MovieTile';
 import SortControl from '../SortControl/SortControl';
-import { useMovies } from '../../shared/hooks/useMovies';
+import { useFilters, useMovies } from '../../shared/hooks';
 import { ContentStyled, MoviesFilter, MoviesGrid } from '../../App.styled';
-import { GENRES, INITIAL_SORTING_OPTIONS } from '../../shared/constants';
+import { GENRES } from '../../shared/constants';
 
 const AppBody: React.FC = () => {
-  const [selectedGenre, setSelectedGenre] = useState('All');
-  const [selectedSort, setSelectedSort] = useState(INITIAL_SORTING_OPTIONS);
-  const { movies } = useMovies();
+  const {
+    selectedGenre,
+    selectedSort,
+    params,
+    handleGenreSelect,
+    handleSortSelect
+  } = useFilters();
+  const { data: movies, isLoading, error } = useMovies(params);
 
   return (
     <ContentStyled>
@@ -18,19 +23,21 @@ const AppBody: React.FC = () => {
         <GenreSelect
           genres={GENRES}
           selectedGenre={selectedGenre}
-          onSelect={setSelectedGenre}
+          onSelect={handleGenreSelect}
         />
-
-        <SortControl currentSelection={selectedSort} onSortChange={setSelectedSort} />
+        <SortControl
+          currentSelection={selectedSort}
+          onSortChange={handleSortSelect}
+        />
       </MoviesFilter>
-
       <MoviesGrid>
-        {movies.length ? movies.map((movie) => {
-          return (<MovieTile key={movie.id} movie={movie} />)
-        }) : (<div>No data</div>)}
+        {isLoading ? <div>Loading...</div> :
+          error ? <div>Something went wrong</div> :
+            movies?.length ? movies.map(movie => <MovieTile key={movie.id} movie={movie} />) :
+              <div>No data</div>}
       </MoviesGrid>
     </ContentStyled>
   );
-}
+};
 
 export default AppBody;

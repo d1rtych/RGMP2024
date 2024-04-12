@@ -1,20 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
+import movieService, { GetMoviesParams } from '../../services/movieService';
 import { Movie } from '../../interfaces/movie.interface';
-import movieService from '../../services/movieService';
 
-export const useMovies = () => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-
-  useEffect(() => {
-    movieService.getMovies()
-      .then((data) => {
-        setMovies(data);
-      })
-      .catch(error => {
-        console.error(error);
-      })
-  }, []);
-
-  return { movies };
-}
+export const useMovies = (params?: GetMoviesParams): UseQueryResult<Movie[], Error> => {
+  return useQuery<Movie[], Error>({
+    queryKey: ['movies', params],
+    queryFn: () => movieService.getMovies(params),
+  });
+};

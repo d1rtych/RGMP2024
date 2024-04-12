@@ -4,18 +4,17 @@ import MovieDetails from '../MovieDetails/MovieDetails';
 import SearchBar from '../SearchBar/SearchBar';
 import Modal from '../Modal/Modal';
 import MovieForm from '../MovieForm/MovieForm';
+import { useFilters } from '../../shared/hooks';
 import { MovieContext } from '../../shared/contexts/MovieContext';
+
 import { BannerStyled, HeaderRowStyled, LogoStyled, TitleStyled } from '../../App.styled';
 import { TypographyBold } from '../../shared/styles/styled';
 import { MovieFormData } from '../../interfaces/movie.interface';
 
 const AppHeader: React.FC = () => {
   const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
+  const { search, handleSearchInput } = useFilters();
   const { selectedMovie } = useContext(MovieContext);
-
-  const onSearch = (query: string) => {
-    console.log(query);
-  }
 
   const addMovieHandler = () => {
     setShowAddMovieModal(true);
@@ -38,7 +37,7 @@ const AppHeader: React.FC = () => {
             <button onClick={addMovieHandler}>+ Add Movie</button>
           </HeaderRowStyled>
           <TitleStyled>FIND YOUR MOVIE</TitleStyled>
-          <SearchBar initialQuery='' onSearch={onSearch} />
+          <SearchBar initialQuery={search} onSearch={handleSearchInput} />
         </BannerStyled>)}
       {showAddMovieModal && (
         <Modal handleClose={() => {setShowAddMovieModal(false)}}>

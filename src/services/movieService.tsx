@@ -2,15 +2,35 @@ import axios from 'axios';
 
 import { Movie } from '../interfaces/movie.interface';
 
+export interface GetMoviesParams {
+  sortBy?: string;
+  sortOrder?: string;
+  search?: string;
+  searchBy?: string;
+  filter?: string;
+  offset?: string;
+  limit?: string;
+}
+
+export interface MovieService {
+  getMovies: (params?: GetMoviesParams) => Promise<Movie[]>;
+  getMovieById: (id: string) => Promise<Movie>;
+  createMovie: (movieData: Movie) => Promise<Movie>;
+  updateMovieById: (id: string, movieData: Movie) => Promise<Movie>;
+  deleteMovieById: (id: string) => void;
+}
+
 const apiClient = axios.create({
-  baseURL: 'http://localhost:4000', // Базовый URL вашего API
+  baseURL: 'http://localhost:4000',
 });
 
-const movieService = {
-  getMovies: async (): Promise<Movie[]> => {
+const movieService: MovieService = {
+  getMovies: async (params?: GetMoviesParams): Promise<Movie[]> => {
     const response = await apiClient.get<{
       data: Movie[]
-    }>('/movies');
+    }>('/movies', {
+      params,
+    });
     return response.data.data;
   },
 
