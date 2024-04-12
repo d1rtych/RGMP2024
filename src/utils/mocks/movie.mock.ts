@@ -1,4 +1,6 @@
-export const mockMovie = {
+import { Movie } from '../../interfaces/movie.interface';
+
+export const mockMovie: Movie = {
   "id": 333339,
   "title": "Ready Player One",
   "tagline": "A better reality awaits.",

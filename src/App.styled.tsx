@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { horizontalPadding, verticalPadding } from './shared/styles/constants';
 import { colorBlackish, colorRed, colorWhite } from './shared/styles/colors';
 
-import backgroundImg from './assets/images/movies-bg.jpg';
-
 export const ContainerStyled = styled.div`
   max-width: 1200px;
   margin: 0 auto;
@@ -13,7 +11,7 @@ export const ContainerStyled = styled.div`
 export const BannerStyled = styled.div`
   height: 398px;
   padding: ${verticalPadding} ${horizontalPadding};
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundImg}) center no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../src/assets/images/movies-bg.jpg') center no-repeat;
   background-size: cover;
 `;
 
