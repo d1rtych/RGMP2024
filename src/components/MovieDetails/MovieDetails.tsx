@@ -1,35 +1,45 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 
-import { MovieContext } from '../../shared/contexts/MovieContext';
+import { useMovie } from '../../shared/hooks/useMovie';
 import { formatRuntime } from '../../utils/utils';
 import { MovieDetailsStyled } from './styled';
+import Logo from '../Logo/Logo';
 
 const MovieDetails: React.FC = () => {
-  const { selectedMovie } = useContext(MovieContext);
+  const { movieId } = useParams();
+  const { data: movie, isLoading, error } = useMovie(movieId!);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  if (!movie) return <div>No movie found</div>;
 
   return (
     <>
-      {selectedMovie && (
+      {movie && (
         <MovieDetailsStyled>
-          <img className="movie-poster" src={selectedMovie.poster_path} alt={selectedMovie.title}/>
-          <div className="movie-details">
-            <div className="movie-details__row">
-              <h2 className="movie-details__title">{selectedMovie.title}</h2>
-              <div className="movie-details__vote">
-                <span>{selectedMovie.vote_average}</span>
+          <Logo />
+          <div className="movie-container">
+            <img className="movie-poster" src={movie.poster_path} alt={movie.title}/>
+            <div className="movie-details">
+              <div className="movie-details__row">
+                <h2 className="movie-details__title">{movie.title}</h2>
+                <div className="movie-details__vote">
+                  <span>{movie.vote_average}</span>
+                </div>
               </div>
-            </div>
 
-            <div className="movie-details__genre">
-              <span>{selectedMovie.genres.join(', ')}</span>
-            </div>
+              <div className="movie-details__genre">
+                <span>{movie.genres.join(', ')}</span>
+              </div>
 
-            <div className="movie-details__row">
-              <span className="movie-details__release-date">{selectedMovie.release_date}</span>
-              <span className="movie-details__runtime">{formatRuntime(selectedMovie.runtime)}</span>
-            </div>
+              <div className="movie-details__row">
+                <span className="movie-details__release-date">{movie.release_date}</span>
+                <span className="movie-details__runtime">{formatRuntime(movie.runtime)}</span>
+              </div>
 
-            <p className="movie-details__description">{selectedMovie.overview}</p>
+              <p className="movie-details__description">{movie.overview}</p>
+            </div>
           </div>
         </MovieDetailsStyled>)}
     </>

@@ -4,11 +4,13 @@ import { colorBlackish, colorRed, colorWhite } from '../../shared/styles/colors'
 
 export const MovieDetailsStyled = styled.div`
   padding: ${verticalPaddingX2} ${horizontalPadding};
-  display: flex;
-
   background-color: ${colorBlackish};
 
   .movie {
+    &-container {
+      display: flex;
+    }
+
     &-poster {
       height: 455px;
       width: 322px;
