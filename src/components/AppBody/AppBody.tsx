@@ -4,7 +4,7 @@ import GenreSelect from '../GenreSelect/GenreSelect';
 import MovieTile from '../MovieTile/MovieTile';
 import SortControl from '../SortControl/SortControl';
 import { useFilters, useMovies } from '../../shared/hooks';
-import { ContentStyled, MoviesFilter, MoviesGrid } from '../../App.styled';
+import { ContentStyled, MoviesFilter, MoviesGrid } from './styled';
 import { GENRES } from '../../shared/constants';
 
 const AppBody: React.FC = () => {

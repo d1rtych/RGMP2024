@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { horizontalPadding, verticalPadding } from './shared/styles/constants';
-import { colorBlackish } from './shared/styles/colors';
+import { horizontalPadding, verticalPadding } from '../../shared/styles/constants';
+import { colorBlackish } from '../../shared/styles/colors';
 
 export const ContainerStyled = styled.div`
   max-width: 1200px;
