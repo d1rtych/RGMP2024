@@ -2,7 +2,7 @@ import React from 'react';
 
 import AppHeader from './components/AppHeader/AppHeader';
 import AppBody from './components/AppBody/AppBody';
-import { ContainerStyled } from './App.styled';
+import { ContainerStyled } from './components/AppBody/styled';
 
 const App: React.FC = () => {
   return (
