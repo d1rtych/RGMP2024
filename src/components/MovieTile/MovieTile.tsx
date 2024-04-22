@@ -1,11 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import Modal from '../Modal/Modal';
 import MovieForm from '../MovieForm/MovieForm';
 import Confirmation from '../Confirmation/Confirmation';
 import { MovieTileProps } from './types';
 import { MovieTileStyled } from './styled';
-import { MovieContext } from '../../shared/contexts/MovieContext';
 import { MovieActions } from '../../shared/enums';
 import { MovieFormData } from '../../interfaces/movie.interface';
 
@@ -13,7 +13,7 @@ const MovieTile: React.FC<MovieTileProps> = ({ movie }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
   const [showDeleteMovieModal, setShowDeleteMovieModal] = useState<boolean>(false);
-  const { selectedMovie, setSelectedMovie } = useContext(MovieContext);
+  const [searchParams] = useSearchParams();
 
   const handleMenuClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -35,11 +35,6 @@ const MovieTile: React.FC<MovieTileProps> = ({ movie }) => {
     }
   };
 
-  const handleTileClick = () => {
-    const contextValue = selectedMovie?.id === movie.id ? null : movie
-    setSelectedMovie(contextValue);
-  };
-
   const onMovieFormSubmitted = (movie: MovieFormData) => {
     console.log(movie);
     setShowAddMovieModal(false);
@@ -51,26 +46,22 @@ const MovieTile: React.FC<MovieTileProps> = ({ movie }) => {
 
   return (
     <MovieTileStyled>
-      <div className="movie-poster" data-testid="movie-tile" onClick={handleTileClick}>
-        <img src={`${movie.poster_path}`} alt={movie.title}/>
-
-        <span className="movie-menu" onClick={handleMenuClick}>...</span>
-        {showMenu && (
-          <div className='movie-menu__bar'>
-            <div className="movie-menu__close">
-              <span onClick={handleMenuClick}>X</span>
-            </div>
-            <p className='movie-menu__item' onClick={(event) => {
-              event.stopPropagation();
-              handleMenuItemSelect(MovieActions.Edit);
-            }}>Edit</p>
-            <p className='movie-menu__item' onClick={(event) => {
-              event.stopPropagation();
-              handleMenuItemSelect(MovieActions.Delete);
-            }}>Delete</p>
+      <span className="movie-menu" onClick={handleMenuClick}>...</span>
+      {showMenu && (
+        <div className='movie-menu__bar'>
+          <div className="movie-menu__close">
+            <span onClick={handleMenuClick}>X</span>
           </div>
-        )}
-      </div>
+          <p className='movie-menu__item' onClick={(event) => {
+            event.stopPropagation();
+            handleMenuItemSelect(MovieActions.Edit);
+          }}>Edit</p>
+          <p className='movie-menu__item' onClick={(event) => {
+            event.stopPropagation();
+            handleMenuItemSelect(MovieActions.Delete);
+          }}>Delete</p>
+        </div>
+      )}
 
       {showAddMovieModal && (
         <Modal handleClose={() => {setShowAddMovieModal(false)}}>
@@ -83,6 +74,13 @@ const MovieTile: React.FC<MovieTileProps> = ({ movie }) => {
           <Confirmation onConfirm={onConfirm} />
         </Modal>
       )}
+
+      <Link to={{
+        pathname: `/movie/${movie.id}`,
+        search: searchParams.toString(), // Add existing query parameters
+      }} className="movie-poster" data-testid="movie-tile">
+        <img src={`${movie.poster_path}`} alt={movie.title}/>
+      </Link>
 
       <div className="movie-info">
         <h3 className="movie-title">{movie.title}</h3>

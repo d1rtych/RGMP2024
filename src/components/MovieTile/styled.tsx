@@ -5,7 +5,13 @@ import { colorBlackish, colorMediumGray, colorRed } from '../../shared/styles/co
 export const MovieTileStyled = styled.div`
   position: relative;
   width: 322px;
-  
+
+  &:hover {
+    .movie-menu {
+      display: block;
+    }
+  }
+
   .movie {
     &-menu {
       position: absolute;
@@ -65,12 +71,6 @@ export const MovieTileStyled = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
-      }
-      
-      &:hover {
-        .movie-menu {
-          display: block;
-        }
       }
     }
 
