@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colorMediumGray, colorWhite } from '../../shared/styles/colors';
+import { colorMediumGray, colorRed, colorWhite } from '../../shared/styles/colors';
 import { verticalPadding, verticalPaddingX2 } from '../../shared/styles/constants';
 
 export const MovieFormStyled = styled.form`
@@ -19,7 +19,6 @@ export const MovieFormStyled = styled.form`
 
   .row {
     width: 100%;
-    margin: ${verticalPadding} 0;
 
     display: flex;
     flex-direction: row;
@@ -36,9 +35,19 @@ export const MovieFormStyled = styled.form`
   
   .form {
     &-group {
+      position: relative;
+      
       width: 100%;
       display: flex;
       flex-direction: column;
+      margin-bottom: 24px;
+      
+      .error {
+        position: absolute;
+        bottom: -20px;
+        font-size: 12px;
+        color: ${colorRed};
+      }
     }
 
     &-control {

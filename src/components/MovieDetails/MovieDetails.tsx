@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 
 import { useMovie } from '../../shared/hooks/useMovie';
 import { formatRuntime } from '../../utils/utils';
@@ -41,6 +41,7 @@ const MovieDetails: React.FC = () => {
               <p className="movie-details__description">{movie.overview}</p>
             </div>
           </div>
+          <Outlet />
         </MovieDetailsStyled>)}
     </>
   );
