@@ -1,16 +1,14 @@
 export interface Movie {
   "title": string,
   "tagline": string,
-  "vote_average": number,
+  "vote_average": number | string,
   "vote_count": number,
   "release_date": string,
   "poster_path": string,
   "overview": string,
   "budget": number,
   "revenue": number,
-  "runtime": number,
+  "runtime": number | string,
   "genres": string[],
-  "id": number
+  "id"?: number,
 }
-
-export type MovieFormData = Pick<Movie, 'title' | 'release_date' | 'poster_path' | 'vote_average' | 'genres' | 'runtime' | 'overview'>;

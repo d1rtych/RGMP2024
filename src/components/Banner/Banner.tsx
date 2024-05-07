@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useFilters } from '../../shared/hooks';
 import Logo from '../Logo/Logo';
-import Modal from '../Modal/Modal';
-import MovieForm from '../MovieForm/MovieForm';
 import SearchBar from '../SearchBar/SearchBar';
 
-import { MovieFormData } from '../../interfaces/movie.interface';
 import { BannerStyled, HeaderRowStyled, TitleStyled } from './styled';
 
 const Banner: React.FC = () => {
-  const [showAddMovieModal, setShowAddMovieModal] = useState<boolean>(false);
   const { search, handleSearchInput } = useFilters();
+  const navigate = useNavigate();
 
   const addMovieHandler = () => {
-    setShowAddMovieModal(true);
-  }
-
-  const onMovieFormSubmitted = (movie: MovieFormData) => {
-    console.log(movie);
+    navigate('/new');
   }
 
   return (
@@ -31,11 +25,6 @@ const Banner: React.FC = () => {
         <TitleStyled>FIND YOUR MOVIE</TitleStyled>
         <SearchBar initialQuery={search} onSearch={handleSearchInput} />
       </BannerStyled>
-      {showAddMovieModal && (
-        <Modal handleClose={() => {setShowAddMovieModal(false)}}>
-          <MovieForm onSubmit={onMovieFormSubmitted} />
-        </Modal>
-      )}
     </>
   )
 }

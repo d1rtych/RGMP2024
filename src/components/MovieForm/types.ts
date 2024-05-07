@@ -1,6 +1,6 @@
-import { Movie, MovieFormData } from '../../interfaces/movie.interface';
+import { Movie } from '../../interfaces/movie.interface';
 
 export type MovieFormProps = {
   initialMovie?: Movie,
-  onSubmit: (movie: MovieFormData) => void,
+  onSubmit: (movie: Movie) => void,
 }

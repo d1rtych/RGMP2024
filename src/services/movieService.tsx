@@ -16,7 +16,7 @@ export interface MovieService {
   getMovies: (params?: GetMoviesParams) => Promise<Movie[]>;
   getMovieById: (id: string) => Promise<Movie>;
   createMovie: (movieData: Movie) => Promise<Movie>;
-  updateMovieById: (id: string, movieData: Movie) => Promise<Movie>;
+  updateMovie: (movieData: Movie) => Promise<Movie>;
   deleteMovieById: (id: string) => void;
 }
 
@@ -44,8 +44,8 @@ const movieService: MovieService = {
     return response.data;
   },
 
-  updateMovieById: async (id: string, movieData: Movie): Promise<Movie> => {
-    const response = await apiClient.put(`/movies/${id}`, movieData);
+  updateMovie: async (movieData: Movie): Promise<Movie> => {
+    const response = await apiClient.put(`/movies`, movieData);
     return response.data;
   },
 
